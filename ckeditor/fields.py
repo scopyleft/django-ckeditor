@@ -15,6 +15,12 @@ class RichTextField(models.TextField):
         }
         defaults.update(kwargs)
         return super(RichTextField, self).formfield(**defaults)
+
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ["^ckeditor\.fields\.RichTextField"])
+except:
+    pass
         
 class RichTextFormField(forms.fields.Field):
     def __init__(self, config_name='default', *args, **kwargs):
