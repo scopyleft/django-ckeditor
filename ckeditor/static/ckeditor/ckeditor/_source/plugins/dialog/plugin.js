@@ -1,4 +1,4 @@
-﻿/*
+/*
 Copyright (c) 2003-2011, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.html or http://ckeditor.com/license
 */
@@ -30,6 +30,8 @@ CKEDITOR.DIALOG_RESIZE_HEIGHT = 2;
  * @constant
  */
 CKEDITOR.DIALOG_RESIZE_BOTH = 3;
+
+
 
 (function()
 {
