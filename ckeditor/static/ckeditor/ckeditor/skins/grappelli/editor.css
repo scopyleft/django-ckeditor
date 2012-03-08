@@ -337,6 +337,7 @@ a:hover.cke_colorauto, a:hover.cke_colormore, a:focus.cke_colorauto, a:focus.cke
 }
 .cke_skin_grappelli .cke_toolbar {
 	display:inline;
+	margin: 0 0 5px 0 !important;
 }
 .cke_skin_grappelli .cke_separator {
 	display:none;
@@ -1154,7 +1155,7 @@ html.cke_skin_grappelli_container {
 	visibility:visible;
 }
 div.cke_toolbox {
-	margin:5px;
+	margin:5px 5px 0 5px;
 }
 .cke_toolbox_collapser {
 	display:none;
