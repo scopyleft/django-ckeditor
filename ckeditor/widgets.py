@@ -60,7 +60,27 @@ class CKEditorWidget(forms.Textarea):
         final_attrs = self.build_attrs(attrs, name=name)
         self.config['filebrowserUploadUrl'] = reverse('ckeditor_upload')
         self.config['filebrowserBrowseUrl'] = reverse('ckeditor_browse')
-        return mark_safe(u'''<textarea%s>%s</textarea>
+        return mark_safe(u'''<textarea%(attr)s>%(value)s</textarea>
         <script type="text/javascript">
-            CKEDITOR.replace("%s", %s);
-        </script>''' % (flatatt(final_attrs), conditional_escape(force_unicode(value)), final_attrs['id'], json_encode(self.config)))
+              if(typeof(%(id)s_id) === 'undefined') {
+                var %(id)s_id = "%(id)s";
+                var %(id)s_timer = null;
+                var %(id)s_config = %(config)s
+              }
+              if(CKEDITOR.instances[%(id)s_id] || %(id)s_timer != null) {
+                clearTimeout(%(id)s_timer);
+                if(CKEDITOR.instances[%(id)s_id]) {
+                  CKEDITOR.instances[%(id)s_id].destroy(true);
+                }
+                %(id)s_timer = setTimeout( function() {
+                    CKEDITOR.replace(%(id)s_id, %(id)s_config);
+                    %(id)s_timer = null;
+                },100);
+              } else {
+                %(id)s_timer = setTimeout( function() {
+                  CKEDITOR.replace(%(id)s_id, %(id)s_config);
+                  %(id)s_timer = null;
+                }, 100);
+              }
+             
+        </script>''' % {'attr':flatatt(final_attrs), 'value':conditional_escape(force_unicode(value)), 'id':final_attrs['id'], 'config':json_encode(self.config)})
