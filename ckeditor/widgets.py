@@ -62,25 +62,25 @@ class CKEditorWidget(forms.Textarea):
         self.config['filebrowserBrowseUrl'] = reverse('ckeditor_browse')
         return mark_safe(u'''<textarea%(attr)s>%(value)s</textarea>
         <script type="text/javascript">
-              if(typeof(%(id)s_id) === 'undefined') {
-                var %(id)s_id = "%(id)s";
-                var %(id)s_timer = null;
-                var %(id)s_config = %(config)s
+              if(typeof(%(id_s)s_id) === 'undefined') {
+                var %(id_s)s_id = "%(id)s";
+                var %(id_s)s_timer = null;
+                var %(id_s)s_config = %(config)s
               }
-              if(CKEDITOR.instances[%(id)s_id] || %(id)s_timer != null) {
-                clearTimeout(%(id)s_timer);
-                if(CKEDITOR.instances[%(id)s_id]) {
-                  CKEDITOR.instances[%(id)s_id].destroy(true);
+              if(CKEDITOR.instances[%(id_s)s_id] || %(id_s)s_timer != null) {
+                clearTimeout(%(id_s)s_timer);
+                if(CKEDITOR.instances[%(id_s)s_id]) {
+                  CKEDITOR.instances[%(id_s)s_id].destroy(true);
                 }
-                %(id)s_timer = setTimeout( function() {
-                    CKEDITOR.replace(%(id)s_id, %(id)s_config);
-                    %(id)s_timer = null;
+                %(id_s)s_timer = setTimeout( function() {
+                    CKEDITOR.replace(%(id_s)s_id, %(id_s)s_config);
+                    %(id_s)s_timer = null;
                 },100);
               } else {
-                %(id)s_timer = setTimeout( function() {
-                  CKEDITOR.replace(%(id)s_id, %(id)s_config);
-                  %(id)s_timer = null;
+                %(id_s)s_timer = setTimeout( function() {
+                  CKEDITOR.replace(%(id_s)s_id, %(id_s)s_config);
+                  %(id_s)s_timer = null;
                 }, 100);
               }
              
-        </script>''' % {'attr':flatatt(final_attrs), 'value':conditional_escape(force_unicode(value)), 'id':final_attrs['id'], 'config':json_encode(self.config)})
+        </script>''' % {'attr':flatatt(final_attrs), 'value':conditional_escape(force_unicode(value)), 'id':final_attrs['id'], 'id_s' :final_attrs['id'].replace('-','_'), 'config':json_encode(self.config)})
