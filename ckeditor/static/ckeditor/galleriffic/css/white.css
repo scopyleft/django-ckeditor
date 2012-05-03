@@ -38,9 +38,6 @@ div.navigation a.prev {
 div.navigation a.next {
 	background-image: url(nextPageArrow.gif);
 }
-div.loader {
-	background-image: url(loader.gif);
-}
 div.slideshow img {
 	border-color: #ccc;
 }

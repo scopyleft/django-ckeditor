@@ -449,9 +449,6 @@ a:hover.cke_colorauto, a:hover.cke_colormore, a:focus.cke_colorauto, a:focus.cke
 	float:left;
 	cursor:default;
 }
-.cke_skin_grappelli .cke_rtl .cke_button .cke_icon {
-	background-image:url(icons_rtl.png);
-}
 .cke_skin_grappelli .cke_browser_ie .cke_button .cke_icon {
 	filter:progid
 	:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale');
@@ -580,9 +577,6 @@ a:hover.cke_colorauto, a:hover.cke_colormore, a:focus.cke_colorauto, a:focus.cke
 	width:16px;
 	height:16px;
 	float:left;
-}
-.cke_rtl .cke_skin_grappelli .cke_menuitem .cke_icon {
-	background-image:url(icons_rtl.png);
 }
 .cke_browser_ie .cke_skin_grappelli .cke_menuitem .cke_icon {
 	filter:progid
