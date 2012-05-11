@@ -54,6 +54,11 @@ class CKEditorWidget(forms.Textarea):
                     raise ImproperlyConfigured("No configuration named '%s' found in your CKEDITOR_CONFIGS setting." % config_name)
             else:
                 raise ImproperlyConfigured('CKEDITOR_CONFIGS setting must be a dictionary type.')
+        if self.config.has_key('contentsCss'):
+            if  isinstance(self.config['contentsCss'], (list, tuple)):
+                self.config['contentsCss'] = [settings.STATIC_URL+css for css in self.config['contentsCss']]
+            else:
+                self.config['contentsCss']=settings.STATIC_URL+self.config['contentsCss']
             
     def render(self, name, value, attrs={}):
         if value is None: value = ''
