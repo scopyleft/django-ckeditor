@@ -3,7 +3,7 @@
  For licensing, see LICENSE.html or http://ckeditor.com/license
  */
 
-.cke_skin_grappelli *, .cke_skin_grappelli a:hover, .cke_skin_grappelli a:link, .cke_skin_grappelli a:visited, .cke_skin_grappelli a:active {
+.cke_skin_grappelli table, .cke_skin_grappelli tbody, .cke_skin_grappelli tr, .cke_skin_grappelli td, .cke_skin_grappelli a:hover, .cke_skin_grappelli a:link, .cke_skin_grappelli a:visited, .cke_skin_grappelli a:active {
 	margin:0;
 	padding:0;
 	border:0;
