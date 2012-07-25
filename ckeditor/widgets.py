@@ -67,25 +67,22 @@ class CKEditorWidget(forms.Textarea):
         self.config['filebrowserBrowseUrl'] = reverse('ckeditor_browse')
         return mark_safe(u'''<textarea%(attr)s>%(value)s</textarea>
         <script type="text/javascript">
-              if(typeof(%(id_s)s_id) === 'undefined') {
-                var %(id_s)s_id = "%(id)s";
-                var %(id_s)s_timer = null;
-                var %(id_s)s_config = %(config)s
-              }
-              if(CKEDITOR.instances[%(id_s)s_id] || %(id_s)s_timer != null) {
+              
+            if(typeof(%(id_s)s_id) === 'undefined') {
+                %(id_s)s_id = "%(id)s";
+                %(id_s)s_timer = null;
+                %(id_s)s_config = %(config)s
+            } else if (%(id_s)s_timer !== null) {
                 clearTimeout(%(id_s)s_timer);
-                if(CKEDITOR.instances[%(id_s)s_id]) {
-                  CKEDITOR.instances[%(id_s)s_id].destroy(true);
-                }
-                %(id_s)s_timer = setTimeout( function() {
+            }
+            
+            %(id_s)s_timer = setTimeout( function() {
+                if (!CKEDITOR.instances[%(id_s)s_id]) {
                     CKEDITOR.replace(%(id_s)s_id, %(id_s)s_config);
-                    %(id_s)s_timer = null;
-                },100);
-              } else {
-                %(id_s)s_timer = setTimeout( function() {
-                  CKEDITOR.replace(%(id_s)s_id, %(id_s)s_config);
-                  %(id_s)s_timer = null;
-                }, 100);
-              }
+                }
+                %(id_s)s_timer = null;
+            }, 100);
+            
+             
              
         </script>''' % {'attr':flatatt(final_attrs), 'value':conditional_escape(force_unicode(value)), 'id':final_attrs['id'], 'id_s' :final_attrs['id'].replace('-','_'), 'config':json_encode(self.config)})
