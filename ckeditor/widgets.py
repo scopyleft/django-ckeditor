@@ -8,6 +8,7 @@ from django.utils import simplejson
 
 from django.core.exceptions import ImproperlyConfigured
 from django.forms.util import flatatt
+from copy import deepcopy
 
 json_encode = simplejson.JSONEncoder().encode
 
@@ -49,12 +50,14 @@ class CKEditorWidget(forms.Textarea):
                     if not isinstance(config, dict):
                         raise ImproperlyConfigured('CKEDITOR_CONFIGS["%s"] setting must be a dictionary type.' % config_name)
                     # Override defaults with settings config.
-                    self.config = config
+                    self.config = deepcopy(config)
                 else:
                     raise ImproperlyConfigured("No configuration named '%s' found in your CKEDITOR_CONFIGS setting." % config_name)
             else:
                 raise ImproperlyConfigured('CKEDITOR_CONFIGS setting must be a dictionary type.')
         if self.config.has_key('contentsCss'):
+            print self.config['contentsCss']
+            
             if  isinstance(self.config['contentsCss'], (list, tuple)):
                 self.config['contentsCss'] = [settings.STATIC_URL+css for css in self.config['contentsCss']]
             else:
