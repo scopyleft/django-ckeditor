@@ -13,7 +13,7 @@ setup(
         'http://dist.plone.org/thirdparty/',
     ],
     install_requires = [
-        'PIL',
+        'pillow',
     ],
     include_package_data=True,
     classifiers = [
